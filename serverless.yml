@@ -1,0 +1,32 @@
+service: saltiresable-functions
+
+provider:
+  name: google
+  stage: dev
+  runtime: nodejs8
+  region: us-east1
+  project: saltiresable
+  credentials: ./keyfile.json
+  environment: ${file(./env.yml)}
+
+plugins:
+  - serverless-google-cloudfunctions
+
+# needs more granular excluding in production as only the serverless provider npm
+# package should be excluded (and not the whole node_modules directory)
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+    - keyfile.json
+
+functions:
+  links:
+    handler: links
+    events:
+      - http: path
+  dump:
+    handler: dump
+    events:
+      - http: path
