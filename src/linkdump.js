@@ -59,6 +59,14 @@ module.exports = {
     return db.getPool().query(query.toParam());
   },
 
+  deleteLink(id) {
+    const query = squel.delete()
+      .from('link')
+      .where('id = ?', id);
+
+    return db.getPool().query(query.toParam());
+  },
+
   createTable() {
     const query = {
       text: 'CREATE TABLE IF NOT EXISTS link (' +

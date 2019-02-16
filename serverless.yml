@@ -30,3 +30,7 @@ functions:
     handler: dump
     events:
       - http: path
+  # delete:
+  #   handler: delete
+  #   events:
+  #     - http: path
